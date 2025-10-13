@@ -1,0 +1,202 @@
+
+                        //Apartado de productos populares
+
+const phoneNumber = "51943455384";
+
+// Mensajes específicos para cada botón
+const messages = {
+  botonArana: "¡Hola! Estoy interesado en el producto 'Hombre Araña'.",
+  botonLufy: "¡Hola! Estoy interesado en el producto 'Lufy'.",
+  botonRamo1: "¡Hola! Estoy interesado en el producto 'Ramo 1'.",
+  botonRamo2: "¡Hola! Estoy interesado en el producto 'Ramo 2'."
+};
+
+// Iterar sobre cada botón y agregar su evento
+Object.keys(messages).forEach((buttonId) => {
+  const button = document.getElementById(buttonId);
+
+  if (button) {
+    button.addEventListener("click", () => {
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(messages[buttonId])}`;
+      window.location.href = whatsappUrl;
+    });
+  } else {
+    console.warn(`El botón con ID '${buttonId}' no fue encontrado en el DOM.`);
+  }
+});
+
+
+                        //Apartado de contactame
+document.addEventListener("DOMContentLoaded", () => {
+  const phoneNumber = "51943455384"; // Número de WhatsApp
+
+  // Obtener el botón
+  const contactButton = document.getElementById("botonContactame");
+
+  // Crear el modal dinámicamente
+  const modal = document.createElement("div");
+  modal.style.position = "fixed";
+  modal.style.top = "0";
+  modal.style.left = "0";
+  modal.style.width = "100%";
+  modal.style.height = "100%";
+  modal.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+  modal.style.display = "none";
+  modal.style.justifyContent = "center";
+  modal.style.alignItems = "center";
+  modal.style.zIndex = "1000";
+
+  const modalContent = document.createElement("div");
+  modalContent.style.background = "white";
+  modalContent.style.padding = "20px";
+  modalContent.style.borderRadius = "10px";
+  modalContent.style.boxShadow = "0px 5px 10px rgba(0, 0, 0, 0.3)";
+  modalContent.style.width = "300px";
+  modalContent.style.textAlign = "center";
+
+  const title = document.createElement("h3");
+  title.innerText = "Enviar Petición por WhatsApp";
+  modalContent.appendChild(title);
+
+  const nameInput = document.createElement("input");
+  nameInput.type = "text";
+  nameInput.id = "name";
+  nameInput.placeholder = "Ingresa tu nombre";
+  nameInput.style.width = "100%";
+  nameInput.style.marginBottom = "10px";
+  nameInput.style.padding = "8px";
+  nameInput.style.border = "1px solid #ddd";
+  nameInput.style.borderRadius = "5px";
+  modalContent.appendChild(nameInput);
+
+  const requestInput = document.createElement("textarea");
+  requestInput.id = "request";
+  requestInput.placeholder = "Escribe tu petición";
+  requestInput.style.width = "100%";
+  requestInput.style.marginBottom = "10px";
+  requestInput.style.padding = "8px";
+  requestInput.style.border = "1px solid #ddd";
+  requestInput.style.borderRadius = "5px";
+  modalContent.appendChild(requestInput);
+
+  const sendButton = document.createElement("button");
+  sendButton.innerText = "Enviar";
+  sendButton.style.padding = "8px 15px";
+  sendButton.style.marginRight = "10px";
+  sendButton.style.border = "none";
+  sendButton.style.borderRadius = "5px";
+  sendButton.style.backgroundColor = "#25d366";
+  sendButton.style.color = "white";
+  sendButton.style.cursor = "pointer";
+  modalContent.appendChild(sendButton);
+
+  const closeButton = document.createElement("button");
+  closeButton.innerText = "Cerrar";
+  closeButton.style.padding = "8px 15px";
+  closeButton.style.border = "none";
+  closeButton.style.borderRadius = "5px";
+  closeButton.style.backgroundColor = "#ddd";
+  closeButton.style.cursor = "pointer";
+  modalContent.appendChild(closeButton);
+
+  modal.appendChild(modalContent);
+  document.body.appendChild(modal);
+
+  // Abrir modal al hacer clic en el botón "Contáctame"
+  contactButton.addEventListener("click", () => {
+    modal.style.display = "flex";
+  });
+
+  // Cerrar modal
+  closeButton.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  // Enviar datos al hacer clic en "Enviar"
+  sendButton.addEventListener("click", () => {
+    const name = nameInput.value.trim();
+    const request = requestInput.value.trim();
+
+    // Validar campos
+    if (!name) {
+      alert("Por favor, ingresa tu nombre.");
+      return;
+    }
+
+    if (!request) {
+      alert("Por favor, escribe tu petición.");
+      return;
+    }
+
+    // Construir mensaje y abrir WhatsApp
+    const message = `Hola, mi nombre es ${name}. Mi petición es: ${request}`;
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, "_blank");
+
+    // Cerrar el modal después de enviar
+    modal.style.display = "none";
+    nameInput.value = ""; // Limpiar campos
+    requestInput.value = "";
+  });
+});
+
+
+                      //ANIMACIONES FINALES
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Función que se ejecutará cuando el elemento entre en la pantalla
+  const observerOptions = {
+    root: null, // Observa los elementos dentro de la ventana (pantalla)
+    rootMargin: '0px', // Margen adicional para activar el efecto antes de llegar al borde
+    threshold: 0.5, // El 50% del elemento debe ser visible para que el evento se active
+  };
+
+  // Crear el IntersectionObserver
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Si el elemento está en la vista, agregar la clase 'visible'
+        entry.target.classList.add('visible');
+        // Dejar de observar el elemento después de que ha entrado en la vista
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Observar los elementos
+  const products = document.querySelectorAll('.product');
+  products.forEach(product => {
+    observer.observe(product);
+  });
+
+  //Clientes satisfechos
+  const clientsSection = document.querySelector('.clients-section');
+  observer.observe(clientsSection);
+
+  // Observar cada tarjeta de cliente individualmente
+  const clientCards = document.querySelectorAll('.client-card');
+  clientCards.forEach(card => observer.observe(card));
+});
+
+
+
+
+/*AGREGAMOS ESTO EN JAVASCRIPT*/
+document.addEventListener("DOMContentLoaded", function () {
+  const menuBtn = document.createElement("div"); 
+  menuBtn.classList.add("menu-btn");
+  menuBtn.innerHTML = "&#9776;"; // Icono ☰
+  document.body.appendChild(menuBtn);
+
+  const barra = document.querySelector(".barra");
+
+  menuBtn.addEventListener("click", function () {
+    barra.classList.toggle("show");
+  });
+});
+
+
+
+
+
+

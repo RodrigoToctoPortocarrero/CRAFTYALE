@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario - Crea tu Detalle</title>
+  <link rel="stylesheet" href="crear.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+</head>
+<body>
+  <div class="form-container">
+    <h1>Crea tu Detalle</h1>
+    <form id="detalleForm">
+      <div class="form-group">
+        <label for="nombre">Nombre del Detalle</label>
+        <input type="text" id="nombre" placeholder="Ejemplo: Conejito Amigurumi">
+      </div>
+      <div class="form-group">
+        <label for="material">Material</label>
+        <input type="text" id="material" placeholder="Ejemplo: Hilo de algodón">
+      </div>
+      <div class="form-group">
+        <label for="color">Color Principal</label>
+        <input type="text" id="color" placeholder="Ejemplo: Rosa pastel">
+      </div>
+      <div class="form-group">
+        <label for="tamaño">Tamaño</label>
+        <input type="text" id="tamaño" placeholder="Ejemplo: 15 cm">
+      </div>
+      
+      <div class="form-group">
+        <label for="mensaje">Mensaje Especial y/o Especificaciones adicionales</label>
+        <textarea id="mensaje" rows="4" placeholder="Agrega un mensaje personalizado"></textarea>
+      </div>
+      <button type="button" class="btn" onclick="enviarDetalle()">Enviar</button>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="crear.js"></script>
+</body>
+</html>
