@@ -1,0 +1,509 @@
+/* Estilos globales básicos */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    padding-top: 70px; /* Espacio para la navBar fija */
+}
+
+/* ----------------------------------- */
+/* 1. ESTILOS DE LA BARRA DE NAVEGACIÓN (Copia los estilos de .barra de producto.css) */
+/* Asegúrate de copiar TODO el CSS de .barra y sus hijos */
+.barra {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    padding: 0 10px;
+    background: linear-gradient(180deg, rgb(255, 105, 180), rgb(255, 100, 150));
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    transition: transform 0.3s ease-in-out;
+}
+
+.barra div {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  border-radius: 15px;
+}
+
+.barra div img {
+  width: 30px;
+  height: 30px;
+}
+
+.barra div h3 a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+    
+    transition: color 0.3s ease, border-bottom 0.3s ease; 
+    
+    border-bottom: 3px solid transparent; 
+    padding-bottom: 2.5px;
+}
+
+.barra div h3 a:hover {
+    border-bottom: 2px solid white;
+}
+
+
+
+/*Boton buscar en la NavBar*/
+
+.barra div h3 a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+    
+    /* CLAVE para el efecto suave: Transiciona color y border-bottom */
+    transition: color 0.3s ease, border-bottom 0.3s ease; 
+    
+    /* CLAVE para el efecto suave: Un borde invisible inicial para reservar el espacio */
+    border-bottom: 2px solid transparent; 
+}
+
+.barra div h3 a:hover {
+    /* Al hacer hover, el borde transparente se vuelve blanco */
+    border-bottom: 2px solid white;
+}
+
+
+.barra div:last-child form {
+    display: flex; 
+    align-items: center; 
+    gap: 5px; 
+}
+
+.barra div:last-child form label {
+    color: white; 
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.barra div:last-child form input[type="text"] {
+    padding: 4px 8px; 
+    border: none; 
+    border-radius: 4px; 
+    font-size: 1rem;
+    background-color: #f0f0f0; 
+    width: 190px; 
+}
+
+.barra div:last-child form button {
+    background-color: white; 
+    color: black; 
+    border: none;
+    border-radius: 4px;
+    padding: 3px 6px;
+    cursor: pointer;
+    line-height: 1; 
+    transition: background-color 0.2s ease;
+}
+
+.barra div:last-child form button:hover {
+    background-color: #ddd; 
+}
+
+
+/* MENU HAMBURGUESA SOLO EN PANTALLAS PEQUEÑAS */
+.menu-btn {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: white;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  z-index: 15;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .menu-btn {
+    display: block; /* Aparece el ícono */
+  }
+
+  .barra {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 10px;
+    transform: translateY(-100%);
+  }
+
+  .barra div {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 10px 20px;
+  }
+
+  .barra div a {
+    font-size: 1rem;
+  }
+
+  .barra div img {
+    width: 25px;
+    height: 25px;
+  }
+
+  /* Clase activa para mostrar el menú */
+  .barra.show {
+    transform: translateY(0);
+  }
+}
+
+
+
+
+
+
+
+
+
+/* ----------------------------------- */
+/* 2. ESTILOS DE DETALLE DE PRODUCTO */
+
+.detail-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.product-detail {
+    display: flex;
+    gap: 30px;
+    padding: 20px 0;
+}
+
+/* Columna de Imagen */
+.image-column {
+    flex: 1;
+    min-width: 300px;
+}
+
+.image-column img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Columna de Información */
+.info-column {
+    flex: 2;
+}
+
+.info-column h1 {
+    font-size: 2.5em;
+    color: rgb(255, 100, 150);
+    margin-bottom: 10px;
+}
+
+.info-column .price {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.info-column h2 {
+    font-size: 1.2em;
+    color: #555;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+}
+
+.info-column p {
+    font-size: 1em;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.info-column .category-tag {
+    display: inline-block;
+    background-color: #ffe6f2;
+    color: rgb(255, 100, 150);
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.9em;
+    margin-right: 10px;
+}
+
+.info-column .occasion-list {
+    margin-top: 5px;
+}
+
+/* Botón de Comprar Principal */
+.buy-detail-btn {
+    display: block;
+    width: 80%;
+    max-width: 300px;
+    background-color: rgb(255, 100, 150);
+    color: #fff;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.1em;
+    margin-top: 30px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.buy-detail-btn:hover {
+    background-color: #f7bfd8;
+}
+
+.back-link {
+    text-align: center;
+    margin-top: 20px;
+    padding-bottom: 10px;
+}
+
+.back-link a {
+    color: #888;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.back-link a:hover {
+    color: rgb(255, 100, 150);
+}
+
+/* Media Query para móviles */
+@media (max-width: 768px) {
+    .product-detail {
+        flex-direction: column; /* Apila las columnas */
+    }
+
+    .image-column {
+        min-width: 100%;
+    }
+
+    .info-column h1 {
+        font-size: 2em;
+    }
+
+    .buy-detail-btn {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+
+
+                    /*PIE DE PAGUINA*/
+
+/* PIE DE PÁGINA (Footer) */
+
+.footer {
+    /* Manteniendo tu degradado original, pero oscureciendo un poco el inicio para contraste */
+    background: linear-gradient(180deg, rgb(255, 105, 180), rgb(255, 100, 150));
+    color: black; /* El texto principal es negro, pero ajustaremos los enlaces a blanco/rosa */
+    padding-top: 40px;
+    font-family: 'Arial', sans-serif;
+}
+
+.footer-container {
+    display: flex; /* Habilita Flexbox para las columnas */
+    justify-content: space-between; /* Distribuye las tres columnas */
+    flex-wrap: wrap; 
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px 40px 20px;
+}
+
+/* Estilo para las columnas */
+.footer-section {
+    width: 30%; /* Ocupa un tercio del espacio en desktop */
+    min-width: 200px; /* Evita que las columnas colapsen demasiado */
+    margin-bottom: 25px;
+}
+
+.footer-section h3, .footer-section h4 {
+    color: white; /* Títulos en color primario */
+    margin-bottom: 15px;
+    font-size: 1.4em;
+}
+
+/* Columna 1: Marca y Contacto */
+.footer-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black; 
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.footer-logo .logo-img {
+    width: 55px;
+    height: 55px;
+    margin-right: 10px;
+}
+
+.tagline {
+    font-size: 0.9em;
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.contact-item a {
+    color: white; /* Color de enlace primario */
+    text-decoration: none;
+    transition: color 0.3s;
+    display: block; /* Para que cada contacto ocupe su propia línea */
+    margin-bottom: 5px;
+}
+
+.contact-item a:hover {
+    color: #ff85a2;
+}
+
+/* Columna 2: Enlaces Rápidos */
+.quick-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.quick-links ul li {
+    margin-bottom: 8px;
+}
+
+.quick-links ul li a {
+    color: black;
+    text-decoration: none;
+    transition: color 0.3s, padding-left 0.3s;
+}
+
+.quick-links ul li a:hover {
+    color: white;
+    padding-left: 5px;
+    font-weight: bold;
+}
+
+
+/* Columna 3: Redes Sociales y Newsletter */
+
+/* Estilo para los iconos sociales (simplificado) */
+.social-links {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.social-link-icon {
+    display: block; /* Asegura que el enlace sea un bloque para el hover */
+    background-color: rgb(255, 100, 150); /* Fondo de botón rosa */
+    padding: 6px;
+    border-radius: 50%;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.social-link-icon img {
+    width: 24px;
+    height: 24px;
+    margin-right: 0; /* Elimina el margen de la versión anterior */
+}
+
+.social-link-icon:hover {
+    background-color: #ff85a2; /* Rosa más suave al pasar el ratón */
+    transform: translateY(-3px); /* Pequeño efecto 3D */
+}
+
+
+/* Formulario de Newsletter */
+.newsletter-form {
+    display: flex;
+    margin-top: 10px;
+}
+
+.newsletter-form input[type="email"] {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    flex-grow: 1;
+}
+
+.newsletter-form button {
+    padding: 8px 12px;
+    border: none;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    margin-left: 10px;
+}
+
+.newsletter-form button:hover {
+    background-color: #ff85a2;
+}
+
+
+/* Barra de Copyright Inferior */
+.footer-bottom {
+    background-color: rgb(255, 100, 150); /* Color sólido para el pie */
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column; /* Apila las columnas en tablets */
+        align-items: center; /* Centra las columnas */
+    }
+
+    .footer-section {
+        width: 80%;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .footer-logo, .social-links {
+        justify-content: center;
+    }
+
+    .newsletter-form {
+        max-width: 90%;
+        margin: 10px auto;
+    }
+    
+    .quick-links ul {
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-section {
+        width: 100%;
+        min-width: 100%;
+    }
+    
+    .footer-bottom {
+        font-size: 0.8em;
+    }
+}

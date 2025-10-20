@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personaliza tu Amigurumi - CraftAle</title>
-    <link rel="stylesheet" href="crear.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <title>Detalle del Producto - CraftAle</title>
+    <link rel="stylesheet" href="detalle_producto.css">
 </head>
 
 <body>
@@ -39,49 +38,10 @@
             </form>
         </div>
     </nav>
-    <div class="main-content">
-        <div class="header-section">
-            <h1>Crea tu Detalle Único</h1>
-            <p class="subtitle">Cuéntanos cómo imaginas tu amigurumi. Personaliza cada detalle y lo tejemos para ti.</p>
+    <div class="detail-container">
+        <div id="productDetail" class="product-detail">
         </div>
-
-        <div class="content-wrapper">
-            <div class="image-column">
-                <img src="./crear.jpg" alt="Amigurumi personalizado" class="create-image">
-                <p class="image-caption">¡Inspírate y diseña tu amigurumi ideal!</p>
-            </div>
-
-            <div class="form-container">
-                <form id="detalleForm">
-                    <div class="form-group">
-                        <label for="nombre">Nombre o Tipo de Personaje</label>
-                        <input type="text" id="nombre" placeholder="Ejemplo: Conejito de Pascua o Luffy">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="material">Material (Hilo)</label>
-                        <input type="text" id="material" placeholder="Ejemplo: Hilo de algodón hipoalergénico">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="color">Color Principal Deseado</label>
-                        <input type="text" id="color" placeholder="Ejemplo: Rosa pastel y blanco">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="tamaño">Tamaño Aproximado (en cm)</label>
-                        <input type="text" id="tamaño" placeholder="Ejemplo: 15 cm de alto">
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label for="mensaje">Especificaciones Adicionales y Mensaje</label>
-                        <textarea id="mensaje" rows="6" placeholder="¿Quieres un accesorio extra, un logo especial o un mensaje bordado? Sé lo más específico posible."></textarea>
-                    </div>
-
-                    <button type="button" id="submitBtn" class="btn">Enviar Petición por WhatsApp</button>
-                </form>
-            </div>
-        </div>
+        <p class="back-link"><a href="../PRODUCTOS/producto.html">&#8592; Volver a Productos</a></p>
     </div>
     <footer class="footer">
         <div class="footer-container">
@@ -143,8 +103,7 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="crear.js"></script>
+    <script src="detalle_producto.js"></script>
 </body>
 
 </html>

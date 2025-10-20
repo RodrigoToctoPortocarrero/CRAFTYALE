@@ -196,6 +196,61 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+// ... (Tus datos de productos y demás código JS existente en productos.js) ...
+
+// Referencia al formulario de búsqueda de la NavBar
+const navBarForm = document.querySelector('.barra form');
+const navBarInput = navBarForm.querySelector('input[type="text"]'); 
+const navBarButton = document.getElementById('buscar-producto');
+
+/**
+ * Busca un producto por nombre y redirige a su página de detalle.
+ * Si encuentra una coincidencia exacta, redirige.
+ * Si no encuentra una coincidencia, redirige a la página de productos con un filtro.
+ * @param {string} searchTerm - El texto a buscar.
+ */
+function searchAndRedirect(searchTerm) {
+    if (!searchTerm) return; // No hacer nada si el campo está vacío
+
+    const normalizedSearchTerm = searchTerm.trim().toLowerCase();
+
+    // 1. Buscar coincidencia exacta por nombre
+    const exactMatch = products.find(p => p.name.toLowerCase() === normalizedSearchTerm);
+    
+    // 2. Buscar la primera coincidencia parcial si no hay exacta
+    const partialMatch = products.find(p => p.name.toLowerCase().includes(normalizedSearchTerm));
+
+    const productToRedirect = exactMatch || partialMatch;
+
+    if (productToRedirect) {
+        // Redirigir al detalle del producto encontrado
+        const productUrl = `../DETALLE_PRODUCTO/detalle_producto.html?name=${encodeURIComponent(productToRedirect.name)}`;
+        window.location.href = productUrl;
+    } else {
+        // Si no se encontró ninguna coincidencia, podrías:
+        
+        // Opción 1 (Recomendada): Redirigir a la página de productos con el filtro aplicado
+        // (Aunque esto ya lo hace tu campo de búsqueda principal de la página, es más robusto)
+        // window.location.href = `producto.html?search=${encodeURIComponent(searchTerm)}`;
+        
+        // Opción 2: Mostrar una alerta si no se encuentra
+        alert(`No se encontró ningún amigurumi llamado "${searchTerm}". Intenta otra búsqueda.`);
+        // Nota: Por simplicidad, usaremos la Opción 2 o simplemente dejamos que el campo de búsqueda principal maneje los filtros.
+    }
+}
+
+// ----------------------------------------------------
+// --- EVENT LISTENERS PARA LA NABBAR ---
+// ----------------------------------------------------
+
+navBarForm.addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita que el formulario haga un submit tradicional y recargue la página
+    
+    // Llama a la función de búsqueda con el valor del input de la navBar
+    searchAndRedirect(navBarInput.value);
+});
+
+// Nota: El event listener del botón ya está cubierto por el evento 'submit' del formulario.
 
 
 

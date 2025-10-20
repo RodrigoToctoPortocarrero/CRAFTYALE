@@ -1,21 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Galería de Productos</title>
-  <link rel="stylesheet" href="producto.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Productos - CraftAle</title>
+    <link rel="stylesheet" href="producto.css">
 </head>
+
 <body>
-  <div class="container">
-    <h1 class="title">Galería de Productos</h1>
-    <input type="text" id="searchInput" placeholder="Buscar productos..." class="search-bar">
 
-    <div id="productGrid" class="grid">
-      <!-- Los productos se generan dinámicamente con JavaScript -->
+    <nav class="barra">
+        <div>
+            <img src="../Imagenes/icono.png" alt="icono" class="icono" />
+            <h3><a href="../index.html" class="icono">CraftAle</a></h3>
+        </div>
+
+        <div>
+            <h3><a href="../PRODUCTOS/producto.html">Productos</a></h3>
+        </div>
+
+        <div>
+            <h3><a href="../CREAR/crear.html">Crear</a></h3>
+        </div>
+
+        <div>
+            <h3><a href="mailto:rodrigotoctoportocarrero@gmail.com">Correo</a></h3>
+        </div>
+
+        <div>
+            <h3><a href="https://wa.me/51943455384">Contactame</a></h3>
+        </div>
+
+        <div>
+            <form>
+                <input type="text" required placeholder="Busca tu producto" />
+                <button style="font-size: 1.5em;" id="buscar-producto">&#128269;</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="video-container">
+        <video autoplay loop muted>
+            <source src="../video/videoFondo.mp4" type="video/mp4">
+            Tu navegador no soporta videos HTML5.
+        </video>
+        <div class="content-background"></div>
+        <div class="content">
+            <h1>Productos para todos</h1>
+            <br>
+        </div>
     </div>
-  </div>
 
-  <script src="productos.js"></script>
+    <div class="container">
+        <h1 class="title">Galería de Amigurumis</h1>
+
+        <div class="filters-container">
+            <input type="text" id="searchInput" placeholder="Buscar por nombre o descripción..." class="search-bar">
+
+            <select id="categoryFilter" class="select-filter">
+                <option value="all">Todas las Categorías</option>
+            </select>
+
+            <div id="occasionFilter" class="occasion-buttons">
+            </div>
+        </div>
+
+        <div id="productGrid" class="grid">
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+
+            <div class="footer-section brand-info">
+                <a href="../index.html" class="footer-logo">
+                    <img src="../Imagenes/icono.png" alt="CraftAle Logo" class="logo-img">
+                    <h3>CraftAle</h3>
+                </a>
+                <p class="tagline">Creando sonrisas tejidas a mano.</p>
+                <p class="contact-item">
+                    <a href="mailto:rodrigotoctoportocarrero@gmail.com">
+                        Correo
+                    </a>
+                </p>
+                <p class="contact-item">
+                    <a href="https://wa.me/51943455384" target="_blank">
+                        WhatsApp
+                    </a>
+                </p>
+            </div>
+
+            <div class="footer-section quick-links">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="../PRODUCTOS/producto.html">Productos</a></li>
+                    <li><a href="../CREAR/crear.html">Personalizar</a></li>
+                    <li><a href="#top">Volver Arriba</a></li>
+                    <li><a href="#">Términos y Condiciones</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section social-links-col">
+                <h4>Sígueme</h4>
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank" class="social-link-icon">
+                        <img src="https://img.icons8.com/ios-filled/30/ffffff/facebook--v1.png" alt="Facebook">
+                    </a>
+                    <a href="https://instagram.com" target="_blank" class="social-link-icon">
+                        <img src="https://img.icons8.com/ios-filled/30/ffffff/instagram-new.png" alt="Instagram">
+                    </a>
+                    <a href="https://tiktok.com" target="_blank" class="social-link-icon">
+                        <img src="https://img.icons8.com/ios-filled/30/ffffff/tiktok.png" alt="TikTok">
+                    </a>
+                    <a href="https://pinterest.com" target="_blank" class="social-link-icon">
+                        <img src="https://img.icons8.com/ios-filled/30/ffffff/pinterest--v1.png" alt="Pinterest">
+                    </a>
+                </div>
+
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Email para Novedades" required>
+                    <button type="submit">Suscribir</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 CraftAle. Todos los derechos reservados. </p>
+        </div>
+    </footer>
+
+    <script src="productos.js"></script>
+
 </body>
+
 </html>
