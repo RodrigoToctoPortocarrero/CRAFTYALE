@@ -1,0 +1,591 @@
+/* ============================================
+   CARRITO.CSS - CraftAle
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Playfair+Display:ital@1&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: #fdf0f5;
+    padding-top: 70px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==================== NAVBAR ==================== */
+.barra {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    padding: 0 20px;
+    background: linear-gradient(180deg, rgb(255, 105, 180), rgb(255, 100, 150));
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+
+/* Marca / Logo */
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+.nav-brand img {
+    width: 50px;
+    height: 50px;
+}
+.nav-brand h3 a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+/* Links: ocupan todo el espacio y se distribuyen uniformemente */
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex: 1;
+    margin-left: 20px;
+}
+.nav-links div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nav-links div h3 a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 2px;
+    transition: border-color 0.3s;
+    white-space: nowrap;
+}
+.nav-links div h3 a:hover {
+    border-bottom-color: white;
+}
+
+/* ── Botón hamburguesa: oculto en desktop ── */
+.hamburguesa {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    /* Sin fondo ni borde para que solo se vean las líneas */
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    padding: 8px;
+    position: fixed;
+    right: 15px;
+    top: 15px;
+    z-index: 200;
+}
+.hamburguesa span {
+    display: block;
+    width: 26px;
+    height: 3px;
+    background: white;
+    border-radius: 3px;
+    transition: all 0.35s ease;
+    transform-origin: center;
+}
+
+/* Animación → X al abrir */
+.hamburguesa.abierto span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.hamburguesa.abierto span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+.hamburguesa.abierto span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ==================== RESPONSIVE NAVBAR ==================== */
+@media (max-width: 768px) {
+
+    /* Mostrar botón hamburguesa */
+    .hamburguesa {
+        display: flex;
+    }
+
+    /* Asegura que no herede fondo de .barra div (si existe esa regla) */
+    .barra .hamburguesa {
+        flex: 0 !important;
+        background: transparent !important;
+        border-radius: 0 !important;
+        gap: 5px;
+    }
+
+    /* Navbar sigue siendo una fila horizontal con logo + hamburguesa */
+    .barra {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 70px;
+        padding: 0 15px;
+    }
+
+    /* Menú desplegable oculto por defecto */
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: linear-gradient(180deg, rgb(255, 105, 180), rgb(255, 100, 150));
+        flex-direction: column;
+        align-items: stretch;
+        flex: unset;
+        margin-left: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease, padding 0.3s ease;
+        box-shadow: 0 8px 20px rgba(255, 100, 150, 0.35);
+        z-index: 99;
+    }
+
+    /* Menú abierto */
+    .nav-links.abierto {
+        max-height: 400px;
+        padding: 10px 0 20px;
+    }
+
+    .nav-links div {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 12px 25px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .nav-links div:last-child {
+        border-bottom: none;
+    }
+    .nav-links div h3 a {
+        font-size: 1.15rem;
+    }
+}
+
+/* ==================== MAIN ==================== */
+.carrito-main {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+    flex: 1;
+}
+
+.carrito-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.carrito-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8em;
+    color: rgb(255, 80, 140);
+    text-shadow: 1px 1px 3px rgba(255, 100, 150, 0.2);
+}
+.carrito-header .subtitle {
+    color: #999;
+    font-size: 1.1em;
+    margin-top: 8px;
+}
+
+/* ==================== LAYOUT ==================== */
+.carrito-wrapper {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* ==================== LISTA ==================== */
+.carrito-lista-section {
+    flex: 2;
+    min-width: 0;
+}
+
+/* ==================== ITEM CARD ==================== */
+.carrito-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: white;
+    border-radius: 16px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 16px rgba(255, 100, 150, 0.1);
+    border: 1px solid #ffe0ed;
+    transition: box-shadow 0.3s, transform 0.3s;
+    animation: slideIn 0.35s ease;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.carrito-item:hover {
+    box-shadow: 0 6px 22px rgba(255, 100, 150, 0.2);
+    transform: translateY(-2px);
+}
+
+.carrito-item img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 10px;
+    flex-shrink: 0;
+    border: 2px solid #ffccdd;
+}
+
+.item-info { flex: 1; }
+.item-info h3 {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 4px;
+}
+.item-info .item-price {
+    color: rgb(255, 100, 150);
+    font-weight: 700;
+    font-size: 1em;
+}
+.item-info .item-unit-price {
+    color: #aaa;
+    font-size: 0.82em;
+    margin-top: 2px;
+}
+
+/* Controles de cantidad */
+.item-cantidad {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fdf0f5;
+    border-radius: 30px;
+    padding: 6px 10px;
+    border: 1px solid #ffccdd;
+}
+.btn-cantidad {
+    background: white;
+    color: rgb(255, 100, 150);
+    border: 1.5px solid rgb(255, 100, 150);
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    font-size: 1.2em;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    transition: background 0.2s, color 0.2s;
+    flex-shrink: 0;
+}
+.btn-cantidad:hover {
+    background: rgb(255, 100, 150);
+    color: white;
+}
+.item-cantidad span {
+    min-width: 22px;
+    text-align: center;
+    font-weight: 700;
+    color: #444;
+    font-size: 1em;
+}
+
+/* Botón eliminar */
+.btn-eliminar {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ccc;
+    font-size: 1.4em;
+    transition: color 0.2s, transform 0.2s;
+    padding: 4px;
+    flex-shrink: 0;
+}
+.btn-eliminar:hover {
+    color: #ff4466;
+    transform: scale(1.2);
+}
+
+/* ==================== VACÍO ==================== */
+.carrito-vacio {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 16px rgba(255, 100, 150, 0.1);
+}
+.vacio-icono {
+    font-size: 5em;
+    margin-bottom: 20px;
+    animation: bounce 1.5s infinite;
+}
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-10px); }
+}
+.carrito-vacio h2 {
+    font-size: 1.6em;
+    color: #555;
+    margin-bottom: 10px;
+}
+.carrito-vacio p {
+    color: #aaa;
+    margin-bottom: 25px;
+}
+
+/* ==================== ACCIONES ==================== */
+.carrito-acciones {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+.btn-vaciar {
+    background: white;
+    color: #ff4466;
+    border: 2px solid #ff4466;
+    padding: 10px 22px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 700;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.95em;
+    transition: all 0.3s;
+}
+.btn-vaciar:hover {
+    background: #ff4466;
+    color: white;
+}
+.btn-seguir-comprando {
+    background: white;
+    color: rgb(255, 100, 150);
+    border: 2px solid rgb(255, 100, 150);
+    padding: 10px 22px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95em;
+    transition: all 0.3s;
+    display: inline-block;
+}
+.btn-seguir-comprando:hover {
+    background: rgb(255, 100, 150);
+    color: white;
+}
+
+/* ==================== RESUMEN ==================== */
+.carrito-resumen {
+    flex: 1;
+    background: white;
+    border-radius: 20px;
+    padding: 28px 24px;
+    box-shadow: 0 4px 20px rgba(255, 100, 150, 0.15);
+    border: 1px solid #ffccdd;
+    position: sticky;
+    top: 90px;
+}
+.carrito-resumen h2 {
+    font-size: 1.4em;
+    color: rgb(255, 80, 140);
+    margin-bottom: 24px;
+    font-weight: 700;
+    padding-bottom: 12px;
+    border-bottom: 2px dashed #ffccdd;
+}
+.resumen-linea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    font-size: 0.98em;
+    color: #666;
+}
+.envio-gratis {
+    color: rgb(255, 100, 150);
+    font-weight: 600;
+    font-size: 0.85em;
+    text-align: right;
+    max-width: 140px;
+}
+.resumen-total {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #333;
+    border-top: 2px solid #ffccdd;
+    padding-top: 14px;
+    margin-top: 8px;
+}
+.resumen-total span:last-child {
+    color: rgb(255, 80, 140);
+    font-size: 1.3em;
+}
+.resumen-items-count {
+    text-align: center;
+    color: #bbb;
+    font-size: 0.85em;
+    margin-bottom: 22px;
+}
+
+/* Botón WhatsApp */
+.btn-whatsapp {
+    width: 100%;
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 1.05em;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Quicksand', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: opacity 0.3s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+}
+.btn-whatsapp:hover {
+    opacity: 0.93;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+}
+.btn-whatsapp:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.resumen-nota {
+    text-align: center;
+    font-size: 0.78em;
+    color: #bbb;
+    margin-top: 14px;
+}
+
+/* ==================== HELPER ==================== */
+.hidden { display: none !important; }
+
+/* ==================== FOOTER ==================== */
+.footer {
+    background: linear-gradient(180deg, rgb(255, 105, 180), rgb(255, 100, 150));
+    color: white;
+    padding-top: 40px;
+    width: 100%;
+    margin-top: auto;
+}
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+}
+.footer-section {
+    width: 30%;
+    min-width: 200px;
+    margin-bottom: 25px;
+}
+.footer-section h3,
+.footer-section h4 {
+    color: white;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+.footer-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    margin-bottom: 10px;
+    font-size: 1.4em;
+}
+.footer-logo .logo-img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+.tagline {
+    font-size: 0.9em;
+    font-style: italic;
+    margin-bottom: 15px;
+}
+.contact-item a {
+    color: #ffccdd;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 5px;
+    transition: color 0.3s;
+}
+.contact-item a:hover { color: white; }
+.quick-links ul { list-style: none; padding: 0; }
+.quick-links ul li { margin-bottom: 8px; }
+.quick-links ul li a {
+    color: white;
+    text-decoration: none;
+    transition: padding-left 0.3s;
+}
+.quick-links ul li a:hover {
+    padding-left: 5px;
+    color: #ffccdd;
+}
+.social-links {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+.social-link-icon {
+    background-color: white;
+    padding: 6px;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+.social-link-icon img {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+.social-link-icon:hover { background-color: #ffccdd; }
+.footer-bottom {
+    background-color: rgb(230, 70, 120);
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+/* ==================== RESPONSIVE GENERAL ==================== */
+@media (max-width: 860px) {
+    .carrito-wrapper { flex-direction: column; }
+    .carrito-resumen { position: static; width: 100%; }
+}
+
+@media (max-width: 480px) {
+    .carrito-item { flex-wrap: wrap; gap: 12px; }
+    .carrito-item img { width: 70px; height: 70px; }
+    .carrito-header h1 { font-size: 2em; }
+    .footer-container { flex-direction: column; align-items: center; }
+    .footer-section { width: 90%; text-align: center; }
+}

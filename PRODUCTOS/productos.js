@@ -70,6 +70,22 @@ let currentSearch = "";
 let currentCategory = "all";
 let currentOccasion = "all";
 
+// MENÚ HAMBURGUESA
+// MENÚ HAMBURGUESA
+document.addEventListener("DOMContentLoaded", function () {
+    const menuBtn = document.createElement("div");
+    menuBtn.classList.add("menu-btn");
+    menuBtn.innerHTML = "&#9776;"; // ☰
+    document.body.appendChild(menuBtn);
+
+    const barra = document.querySelector(".barra");
+
+    menuBtn.addEventListener("click", function () {
+        barra.classList.toggle("show");
+        menuBtn.innerHTML = barra.classList.contains("show") ? "&#10005;" : "&#9776;"; // ✕ o ☰
+    });
+});
+
 // ----------------------------------------------------
 // --- FUNCIONES DE INICIALIZACIÓN DE FILTROS ---
 // ----------------------------------------------------
@@ -86,14 +102,14 @@ function getUniqueFilters() {
         }
     });
 
-    return { 
-        categories: Array.from(categories).sort(), 
+    return {
+        categories: Array.from(categories).sort(),
         occasions: Array.from(occasions).sort((a, b) => {
             // Poner 'Todos' primero
             if (a === "Todos") return -1;
             if (b === "Todos") return 1;
             return a.localeCompare(b);
-        }) 
+        })
     };
 }
 
@@ -120,7 +136,7 @@ function populateOccasionFilter(occasions) {
         if (occasion === "Todos") {
             button.classList.add("active"); // 'Todos' activo por defecto
         }
-        
+
         button.addEventListener("click", handleOccasionClick);
         occasionFilterContainer.appendChild(button);
     });
@@ -158,8 +174,8 @@ function renderProducts() {
         const matchesCategory = currentCategory === "all" || product.category === currentCategory;
 
         // 3. Filtrar por Ocasión (Botones)
-        const matchesOccasion = currentOccasion === "all" || 
-                               (product.occasions && product.occasions.includes(currentOccasion));
+        const matchesOccasion = currentOccasion === "all" ||
+            (product.occasions && product.occasions.includes(currentOccasion));
 
         return matchesSearch && matchesCategory && matchesOccasion;
     });
@@ -172,7 +188,7 @@ function renderProducts() {
     filteredProducts.forEach(product => {
         const productCard = document.createElement("div");
         productCard.classList.add("product-card");
-        
+
         // **URL para el botón 'Ver'**
         const productUrl = `../DETALLE_PRODUCTO/detalle_producto.html?name=${encodeURIComponent(product.name)}`;
 
@@ -187,16 +203,25 @@ function renderProducts() {
                     href="${productUrl}"
                     class="view-btn">Ver</a>
 
-                <a 
-                    href="https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(
-                        `Hola, me interesa el producto "${product.name}" (${product.price}).`
-                    )}" 
-                    target="_blank" 
-                    class="buy-btn">Comprar</a>
+                <button 
+                    class="buy-btn btn-agregar-carrito"
+                    data-name="${product.name}"
+                    data-price="${product.price}"
+                    data-image="${product.image}">
+                    🛒 Agregar
+                </button>
             </div>
         `;
 
         productGrid.appendChild(productCard);
+
+        productCard.querySelector(".btn-agregar-carrito").addEventListener("click", function () {
+            agregarAlCarrito({
+                name: this.dataset.name,
+                price: this.dataset.price,
+                image: this.dataset.image
+            });
+        });
     });
 
     // Agregar observador a los productos para la animación
@@ -209,12 +234,12 @@ function renderProducts() {
 
 function observeProducts() {
     const cards = document.querySelectorAll(".product-card");
-    
+
     // Desconectar el observador anterior si existe
     if (window.productObserver) {
         window.productObserver.disconnect();
     }
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {

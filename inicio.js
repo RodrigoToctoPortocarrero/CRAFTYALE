@@ -1,5 +1,62 @@
+// Datos de productos (AHORA CON CATEGORÍA Y OCASIONES)
+const products = [
+    {
+        name: "Conejito Amigurumi",
+        description: "Un tierno conejito hecho a mano, perfecto para Pascua.",
+        details: "Este conejito está tejido con hilo de algodón 100% hipoalergénico. Mide aproximadamente 20cm de alto y es ideal para recién nacidos.",
+        price: "$15.00",
+        image: "../Imagenes/lufy.png",
+        category: "Animales", // Nueva propiedad
+        occasions: ["Pascua", "Bebés", "Cumpleaños"] // Nueva propiedad
+    },
+    {
+        name: "Osito Amigurumi",
+        description: "Osito suave y adorable, ideal para regalos de San Valentín.",
+        details: "Nuestro osito más popular, tejido con hilo de lana premium. Es un regalo romántico y duradero. ¡Disponible en varios colores!",
+        price: "$18.00",
+        image: "../Imagenes/lufy.png",
+        category: "Animales",
+        occasions: ["San Valentín", "Bebés", "Cumpleaños"]
+    },
+    {
+        name: "Flor Tejida",
+        description: "Flor de colores vivos, ideal para decoración o Día de la Madre.",
+        details: "Una flor eterna que nunca se marchita. Incluye tallo de alambre flexible y viene en un pequeño macetero de crochet. ¡Perfecta para escritorios!",
+        price: "$8.00",
+        image: "../Imagenes/lufy.png",
+        category: "Decoración",
+        occasions: ["Día de la Madre", "Decoración"]
+    },
+    {
+        name: "Gatito Amigurumi",
+        description: "Un lindo gatito tejido con amor. Gran regalo navideño.",
+        details: "Este gatito en posición durmiente es muy relajante. El relleno es de fibra siliconada que mantiene su forma a lo largo del tiempo. Un favorito de los coleccionistas.",
+        price: "$20.00",
+        image: "../Imagenes/lufy.png",
+        category: "Animales",
+        occasions: ["Navidad", "Cumpleaños"]
+    },
+    {
+        name: "Alfombra de Crochet",
+        description: "Ideal para decorar cualquier espacio, categoría hogar.",
+        details: "Alfombra redonda de 80cm de diámetro, hecha con hilo de trapillo resistente. Aporta un toque rústico y acogedor a cualquier habitación.",
+        price: "$30.00",
+        image: "../Imagenes/lufy.png",
+        category: "Hogar",
+        occasions: ["Decoración", "Regalos"]
+    },
+    {
+        name: "Muñeco de Nieve",
+        description: "Perfecto para la temporada invernal y festividades.",
+        details: "Muñeco de nieve clásico con bufanda y sombrero tejido. Un adorno navideño que encantará a toda la familia. Edición limitada.",
+        price: "$25.00",
+        image: "../Imagenes/lufy.png",
+        category: "Personajes",
+        occasions: ["Navidad"]
+    }
+];
 
-                        //Apartado de productos populares
+//Apartado de productos populares
 
 const phoneNumber = "51943455384";
 
@@ -251,6 +308,32 @@ navBarForm.addEventListener('submit', function(event) {
 });
 
 // Nota: El event listener del botón ya está cubierto por el evento 'submit' del formulario.
+
+
+//Se agregara funcionalidad al boton buscar de nabBar, esta te llevara al detalle de ese producto
+const inputBuscarProductoNav = document.getElementById("buscar-producto").value;
+
+const btnBuscarProductoNav = document.getElementById("btn-buscar-producto-nav");
+
+function BuscarProducto(){
+  
+  if(inputBuscarProductoNav==="" || inputBuscarProductoNav === null){
+        alert("Tiene que llenar el input para buscar");
+  }
+  products.forEach((p)=>{
+
+      if(p.name == inputBuscarProductoNav){
+        alert(`El producto: ${p.name}, si esta en productos`);
+      }
+  });
+
+
+
+}
+
+btnBuscarProductoNav.addEventListener("click",()=>{
+  BuscarProducto();
+});
 
 
 

@@ -29,16 +29,24 @@
         </div>
 
         <div>
-            <h3><a href="https://wa.me/51943455384">Contactame</a></h3>
+            <h3><a href="https://wa.me/51943531527">Contactame</a></h3>
         </div>
 
         <div>
-            <form>
-                <input type="text" required placeholder="Busca tu producto" />
-                <button style="font-size: 1.5em;" id="buscar-producto">&#128269;</button>
-            </form>
+            <a href="../CARRITO/carrito.html" class="carrito-nav-link"
+                style="position:relative; text-decoration:none; color:white; font-size:1.5em;">
+                🛒
+                <span id="carrito-badge" style="
+            display:none; position:absolute; top:-8px; right:-10px;
+            background:#fff; color:rgb(255,100,150); border-radius:50%;
+            width:20px; height:20px; font-size:0.6em; font-weight:700;
+            align-items:center; justify-content:center;
+        "></span>
+            </a>
         </div>
     </nav>
+    <span class="menu-btn" id="menuBtn">☰</span> <!-- AQUÍ, FUERA DEL NAV -->
+
     <div class="main-content">
         <div class="header-section">
             <h1>Crea tu Detalle Único</h1>
@@ -75,7 +83,8 @@
 
                     <div class="form-group full-width">
                         <label for="mensaje">Especificaciones Adicionales y Mensaje</label>
-                        <textarea id="mensaje" rows="6" placeholder="¿Quieres un accesorio extra, un logo especial o un mensaje bordado? Sé lo más específico posible."></textarea>
+                        <textarea id="mensaje" rows="6"
+                            placeholder="¿Quieres un accesorio extra, un logo especial o un mensaje bordado? Sé lo más específico posible."></textarea>
                     </div>
 
                     <button type="button" id="submitBtn" class="btn">Enviar Petición por WhatsApp</button>

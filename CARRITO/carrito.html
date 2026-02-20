@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito - CraftAle</title>
+    <link rel="stylesheet" href="carrito.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Playfair+Display:ital@0;1&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- BARRA DE NAVEGACIÓN -->
+    <!-- BARRA DE NAVEGACIÓN -->
+    <nav class="barra">
+        <div class="nav-brand">
+            <img src="../Imagenes/icono.png" alt="icono" class="icono" />
+            <h3><a href="../index.html" class="icono">CraftAle</a></h3>
+        </div>
+
+        <!-- Botón hamburguesa -->
+        <button class="hamburguesa" id="hamburguesa" aria-label="Menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- Links del menú -->
+        <div class="nav-links" id="nav-links">
+            <div>
+                <h3><a href="../PRODUCTOS/producto.html">Productos</a></h3>
+            </div>
+            <div>
+                <h3><a href="../CREAR/crear.html">Crear</a></h3>
+            </div>
+            <div>
+                <h3><a href="mailto:rodrigotoctoportocarrero@gmail.com">Correo</a></h3>
+            </div>
+            <div>
+                <h3><a href="https://wa.me/51943531527">Contactame</a></h3>
+            </div>
+            <div>
+                <a href="carrito.html" class="carrito-nav-link"
+                    style="position:relative; text-decoration:none; color:white; font-size:1.5em;">
+                    🛒
+                    <span id="carrito-badge" style="
+                    display:none; position:absolute; top:-8px; right:-10px;
+                    background:#fff; color:rgb(255,100,150); border-radius:50%;
+                    width:20px; height:20px; font-size:0.6em; font-weight:700;
+                    align-items:center; justify-content:center;
+                "></span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="carrito-main">
+
+        <div class="carrito-header">
+            <h1>🛒 Tu Carrito</h1>
+            <p class="subtitle">Revisa tus amigurumis seleccionados</p>
+        </div>
+
+        <div class="carrito-wrapper">
+
+            <!-- LISTA DE PRODUCTOS -->
+            <section class="carrito-lista-section">
+                <div id="carrito-vacio" class="carrito-vacio hidden">
+                    <div class="vacio-icono">🧶</div>
+                    <h2>Tu carrito está vacío</h2>
+                    <p>¡Aún no has añadido ningún amigurumi!</p>
+                    <a href="../PRODUCTOS/producto.html" class="btn-seguir-comprando">Ver Productos</a>
+                </div>
+
+                <div id="carrito-items">
+                    <!-- Los items se insertan aquí con JS -->
+                </div>
+
+                <div id="carrito-acciones" class="carrito-acciones hidden">
+                    <button id="btn-vaciar" class="btn-vaciar">🗑️ Vaciar carrito</button>
+                    <a href="../PRODUCTOS/producto.html" class="btn-seguir-comprando">← Seguir comprando</a>
+                </div>
+            </section>
+
+            <!-- RESUMEN DEL PEDIDO -->
+            <aside class="carrito-resumen" id="carrito-resumen">
+                <h2>Resumen del Pedido</h2>
+
+                <div class="resumen-linea">
+                    <span>Subtotal</span>
+                    <span id="resumen-subtotal">S/ 0.00</span>
+                </div>
+                <div class="resumen-linea">
+                    <span>Envío</span>
+                    <span class="envio-gratis">Coordinar por WhatsApp</span>
+                </div>
+                <div class="resumen-linea resumen-total">
+                    <span>Total</span>
+                    <span id="resumen-total">S/ 0.00</span>
+                </div>
+
+                <div class="resumen-items-count">
+                    <span id="resumen-cantidad">0 productos</span>
+                </div>
+
+                <button id="btn-pedir-whatsapp" class="btn-whatsapp">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                    </svg>
+                    Pedir por WhatsApp
+                </button>
+
+                <p class="resumen-nota">Te contactaremos para coordinar el pago y envío 🧶</p>
+            </aside>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+
+            <div class="footer-section brand-info">
+                <a href="../index.html" class="footer-logo">
+                    <img src="../Imagenes/icono.png" alt="CraftAle Logo" class="logo-img">
+                    <h3>CraftAle</h3>
+                </a>
+                <p class="tagline">Creando sonrisas tejidas a mano.</p>
+                <p class="contact-item">
+                    <a href="mailto:rodrigotoctoportocarrero@gmail.com">
+                        Correo
+                    </a>
+                </p>
+                <p class="contact-item">
+                    <a href="https://wa.me/51943455384" target="_blank">
+                        WhatsApp
+                    </a>
+                </p>
+            </div>
+
+            <div class="footer-section quick-links">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="../PRODUCTOS/producto.html">Productos</a></li>
+                    <li><a href="../CREAR/crear.html">Personalizar</a></li>
+                    <li><a href="#top">Volver Arriba</a></li>
+                    <li><a href="#">Términos y Condiciones</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section social-links-col">
+                <h4>Sígueme</h4>
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank" class="social-link-icon">
+                        <img src="https://img.icons8.com/ios-filled/30/ffffff/facebook--v1.png" alt="Facebook">
+                    </a>
+                    <a href="https://instagram.com" target="_blank" class="social-link-icon">
+                        <img src="https://img.icons8.com/ios-filled/30/ffffff/instagram-new.png" alt="Instagram">
+                    </a>
+                    <a href="https://tiktok.com" target="_blank" class="social-link-icon">
+                        <img src="https://img.icons8.com/ios-filled/30/ffffff/tiktok.png" alt="TikTok">
+                    </a>
+                    <a href="https://pinterest.com" target="_blank" class="social-link-icon">
+                        <img src="https://img.icons8.com/ios-filled/30/ffffff/pinterest--v1.png" alt="Pinterest">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 CraftAle. Todos los derechos reservados. </p>
+        </div>
+    </footer>
+
+    <script src="carrito.js"></script>
+</body>
+
+</html>

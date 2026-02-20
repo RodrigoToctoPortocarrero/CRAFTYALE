@@ -44,19 +44,32 @@ function enviarDetalle() {
             // 4. Construcción del mensaje de WhatsApp
             const numeroWhatsApp = '51943455384'; // Tu número
             const texto = `¡Hola CraftAle! Tengo una idea de amigurumi personalizado:\n\n` +
-                          `🧸 Nombre/Tipo: ${nombre}\n` +
-                          `🧶 Material: ${material}\n` +
-                          `💖 Color Principal: ${color}\n` +
-                          `📏 Tamaño: ${tamaño}\n` +
-                          `✉️ Especificaciones: ${mensaje}`;
-            
+                `🧸 Nombre/Tipo: ${nombre}\n` +
+                `🧶 Material: ${material}\n` +
+                `💖 Color Principal: ${color}\n` +
+                `📏 Tamaño: ${tamaño}\n` +
+                `✉️ Especificaciones: ${mensaje}`;
+
             const url = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(texto)}`;
-            
+
             // 5. Redirección
             window.open(url, '_blank');
-            
+
             // Opcional: limpiar el formulario después del envío exitoso
             document.getElementById('detalleForm').reset();
         }
     });
 }
+
+// MENÚ HAMBURGUESA
+document.addEventListener("DOMContentLoaded", function () {
+    const menuBtn = document.getElementById('menuBtn');
+    const barra = document.querySelector('.barra');
+
+    if (menuBtn) {
+        menuBtn.addEventListener('click', function () {
+            barra.classList.toggle('show');
+            menuBtn.innerHTML = barra.classList.contains('show') ? '&#10005;' : '&#9776;';
+        });
+    }
+});
